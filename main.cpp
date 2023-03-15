@@ -1,5 +1,5 @@
 #include "render.hpp"
 
 int main() {
-    ppm::render();
+    ppm::render_binary();
 }
