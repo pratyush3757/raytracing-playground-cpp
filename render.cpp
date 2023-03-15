@@ -1,4 +1,7 @@
 #include "render.hpp"
+#include "color.hpp"
+#include "vec3.hpp"
+
 #include <cstdint>
 #include <iostream>
 
@@ -13,21 +16,14 @@ void render(bool ascii) {
     for (int32_t j = ppm::image_height - 1; j >= 0; --j) {
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int32_t i = 0; i < ppm::image_width; ++i) {
-            auto r = double(i) / (ppm::image_width-1);
-            auto g = double(j) / (ppm::image_height-1);
-            auto b = 0.25;
+            color pixel_color(double(i)/(ppm::image_width-1),
+                              double(j)/(ppm::image_height-1),
+                              0.25);
 
             if (ascii) {
-                // uint32_t instead of uint8_t as ostream treats uint8_t as unsigned char
-                uint32_t ir = static_cast<uint32_t>(255.999 * r);
-                uint32_t ig = static_cast<uint32_t>(255.999 * g);
-                uint32_t ib = static_cast<uint32_t>(255.999 * b);
-                std::cout << ir << ' ' << ig << ' ' << ib << '\n';
+                write_color_plain(std::cout, pixel_color);
             } else {
-                uint8_t ir = static_cast<uint8_t>(255.999 * r);
-                uint8_t ig = static_cast<uint8_t>(255.999 * g);
-                uint8_t ib = static_cast<uint8_t>(255.999 * b);
-                std::cout << ir << ig << ib;
+                write_color_bytes(std::cout, pixel_color);
             }
         }
     }
@@ -41,7 +37,7 @@ void ppm::render_plain() {
 }
 
 
-void ppm::render_binary() {
+void ppm::render_bytes() {
     render(false);
 }
 
