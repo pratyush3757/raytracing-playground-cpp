@@ -12,4 +12,4 @@ TODO:
 - [ ] Add multithreading
 - [ ] Add GPU offloading
 - [ ] Add quake 3 fast inverse square root or some better algorithm
-- [ ] Add glass [caustics](https://en.wikipedia.org/wiki/Caustic_(optics\)) using depth maps [youtube extra resource link](https://www.youtube.com/watch?v=7l6QOcgWXfI)
+- [ ] Add glass [caustics](https://en.wikipedia.org/wiki/Caustic_(optics)) using depth maps [youtube extra resource link](https://www.youtube.com/watch?v=7l6QOcgWXfI)
