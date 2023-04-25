@@ -1,4 +1,4 @@
-#include "vec3.hpp"
+#include "../structs/vec3.hpp"
 #include <cstdint>
 
 namespace image {

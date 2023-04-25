@@ -1,9 +1,9 @@
 #include "render.hpp"
-#include "color.hpp"
-#include "vec3.hpp"
-#include "image_camera.hpp"
-#include "ray.hpp"
-#include "hit.hpp"
+#include "../structs/color.hpp"
+#include "../structs/vec3.hpp"
+#include "../structs/ray.hpp"
+#include "../structs/hit.hpp"
+#include "../camera/image_camera.hpp"
 
 #include <cstdint>
 #include <iostream>
