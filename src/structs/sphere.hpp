@@ -1,7 +1,7 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
-#include "hit.hpp"
+#include "hittable.hpp"
 #include "vec3.hpp"
 #include <cmath>
 

@@ -2,7 +2,7 @@
 #include "../structs/color.hpp"
 #include "../structs/vec3.hpp"
 #include "../structs/ray.hpp"
-#include "../structs/hit.hpp"
+#include "../structs/hittable.hpp"
 #include "../camera/image_camera.hpp"
 
 #include <cstdint>
