@@ -27,10 +27,10 @@ public:
    *  https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
    */
   static bool doubleCompare(double d1, double d2) {
-    static constexpr auto epsilon = 1.0e-05f;
-    if (std::abs(d1 - d2) <= epsilon)
+    static constexpr double epsilon = 1.0e-04f;
+    if (std::fabs(d1 - d2) <= epsilon)
       return true;
-    return std::abs(d1 - d2) <= epsilon * std::fmax(std::abs(d1), std::abs(d2));
+    return std::fabs(d1 - d2) <= epsilon * std::fmax(std::fabs(d1), std::fabs(d2));
   }
 
 private:
