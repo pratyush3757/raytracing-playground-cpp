@@ -1,6 +1,7 @@
 #ifndef RT_TUPLES
 #define RT_TUPLES
 
+#include <cassert>
 #include <cmath>
 #include <tuple>
 
@@ -32,8 +33,9 @@ public:
    */
   static bool doubleCompare(double d1, double d2) {
     static constexpr double epsilon = 1.0e-04f;
-    if (std::fabs(d1 - d2) <= epsilon)
+    if (std::fabs(d1 - d2) <= epsilon) {
       return true;
+    }
     return std::fabs(d1 - d2) <= epsilon * std::fmax(std::fabs(d1), std::fabs(d2));
   }
 
@@ -45,6 +47,28 @@ inline bool operator==(const rt_tuple &u, const rt_tuple &v) {
   return rt_tuple::doubleCompare(u.x(), v.x()) &&
          rt_tuple::doubleCompare(u.y(), v.y()) &&
          rt_tuple::doubleCompare(u.z(), v.z());
+}
+
+inline rt_tuple operator+(const rt_tuple &u, const rt_tuple &v) {
+  double x = u.x() + v.x();
+  double y = u.y() + v.y();
+  double z = u.z() + v.z();
+  double type_val = u.type_val() + v.type_val();
+  // assert(type_val >= 0 && type_val <= 1);
+  return rt_tuple(x,y,z,type_val);
+}
+
+inline rt_tuple operator-(const rt_tuple &u, const rt_tuple &v) {
+  double x = u.x() - v.x();
+  double y = u.y() - v.y();
+  double z = u.z() - v.z();
+  double type_val = u.type_val() - v.type_val();
+  // assert(type_val >= 0 && type_val <= 1);
+  return rt_tuple(x,y,z,type_val);
+}
+
+inline rt_tuple operator-(const rt_tuple &u) {
+  return rt_tuple(-u.x(), -u.y(), -u.z(), -u.type_val());
 }
 
 #endif // !RT_TUPLES
