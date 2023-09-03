@@ -19,6 +19,13 @@ public:
   rt_tuple &operator=(const rt_tuple &) = default;
   ~rt_tuple();
 
+  /*  Compares doubles with relative tolerence to their magnitudes
+   *  The source I first referred to write this:
+   *  https://embeddeduse.com/2019/08/26/qt-compare-two-floats/
+   *  But the reason to follow this approach is given here:
+   *  https://realtimecollisiondetection.net/blog/?p=89
+   *  https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+   */
   static bool doubleCompare(double d1, double d2) {
     static constexpr auto epsilon = 1.0e-05f;
     if (std::abs(d1 - d2) <= epsilon)
