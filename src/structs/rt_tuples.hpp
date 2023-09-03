@@ -9,15 +9,19 @@ public:
   rt_tuple() : t{0, 0, 0, 0} {}
   rt_tuple(double t0, double t1, double t2, double t3) : t{t0, t1, t2, t3} {}
 
+  static rt_tuple point(double t0, double t1, double t2) {
+    return rt_tuple(t0, t1, t2, 1);
+  }
+  static rt_tuple vector(double t0, double t1, double t2) {
+    return rt_tuple(t0, t1, t2, 0);
+  }
+
   double x() const { return std::get<0>(t); }
   double y() const { return std::get<1>(t); }
   double z() const { return std::get<2>(t); }
-
-  rt_tuple(rt_tuple &&) = default;
-  rt_tuple(const rt_tuple &) = default;
-  rt_tuple &operator=(rt_tuple &&) = default;
-  rt_tuple &operator=(const rt_tuple &) = default;
-  ~rt_tuple();
+  double type_val() const { return std::get<3>(t); }
+  bool is_point() const { return std::get<3>(t) == 1; }
+  bool is_vector() const { return std::get<3>(t) == 0; }
 
   /*  Compares doubles with relative tolerence to their magnitudes
    *  The source I first referred to write this:
