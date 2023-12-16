@@ -6,7 +6,7 @@ and other graphic concepts while following the book
 ~~[Raytracing in one weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)~~ 
 [The Ray Tracer Challenge](https://pragprog.com/titles/jbtracer/the-ray-tracer-challenge/).  
 
-I was following the `Raytracing in one weekend` book series, I felt the explanations to be not good enough.  
+I was following the `Raytracing in one weekend` book series and felt the explanations to be not good enough.  
 Switching the repository to follow `The Ray Trace Challenge`. Old code can be found in `deprecated_archive` branch.
 
 More optimizations and extra features will be added as I progress through the book series, and get more in-depth insights through other papers.
