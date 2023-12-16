@@ -5,11 +5,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/bin)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-set(ALL_SUBLIBRARIES
+add_subdirectory(structs)
+add_subdirectory(extra)
 
+set(ALL_SUBLIBRARIES
+    lib_structs
+    lib_extra
 )
 set(ALL_DEPENDENCIES
 
 )
+
+target_link_libraries(lib_extra lib_structs)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${ALL_SUBLIBRARIES} PUBLIC ${ALL_DEPENDENCIES})
