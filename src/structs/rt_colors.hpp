@@ -1,3 +1,6 @@
+#ifndef RT_COLORS
+#define RT_COLORS
+
 #include "rt_tuples.hpp"
 
 class rt_color : public rt_tuple {
@@ -21,3 +24,4 @@ inline rt_color operator*(const rt_color &u, const rt_color &v) {
                   (u.g() * v.g()),
                   (u.b() * v.b()));
 }
+#endif // !RT_COLORS
