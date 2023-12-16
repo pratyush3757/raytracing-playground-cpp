@@ -31,12 +31,43 @@ public:
    *  https://realtimecollisiondetection.net/blog/?p=89
    *  https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
    */
-  static bool doubleCompare(double d1, double d2) {
+  static bool doubleCompare(const double d1, const double d2) {
     static constexpr double epsilon = 1.0e-04f;
     if (std::fabs(d1 - d2) <= epsilon) {
       return true;
     }
     return std::fabs(d1 - d2) <= epsilon * std::fmax(std::fabs(d1), std::fabs(d2));
+  }
+
+  static double magnitude(const rt_tuple &u) {
+    // assert(u.is_vector());
+    return std::sqrt((u.x() * u.x()) 
+              + (u.y() * u.y()) 
+              + (u.z() * u.z())
+              + (u.type_val() * u.type_val()));
+  }
+
+  static rt_tuple normalize(const rt_tuple &u) {
+    const double mag = magnitude(u);
+    return rt_tuple((u.x() / mag),
+                    (u.y() / mag),
+                    (u.z() / mag),
+                    (u.type_val() / mag));
+  }
+
+  static double dot(const rt_tuple &u, const rt_tuple &v) {
+    return ((u.x() * v.x()) 
+    + (u.y() * v.y())
+    + (u.z() * v.z())
+    + (u.type_val() * v.type_val()));
+  }
+
+  static rt_tuple cross(const rt_tuple &u, const rt_tuple &v) {
+    assert(u.is_vector());
+    assert(v.is_vector());
+    return rt_tuple::vector((u.y() * v.z() - u.z() * v.y()), 
+                            (u.z() * v.x() - u.x() * v.z()), 
+                            (u.x() * v.y() - u.y() * v.x()));
   }
 
 private:
@@ -69,6 +100,14 @@ inline rt_tuple operator-(const rt_tuple &u, const rt_tuple &v) {
 
 inline rt_tuple operator-(const rt_tuple &u) {
   return rt_tuple(-u.x(), -u.y(), -u.z(), -u.type_val());
+}
+
+inline rt_tuple operator*(const rt_tuple &u, const double v) {
+  return rt_tuple(u.x() * v, u.y() * v, u.z() * v, u.type_val() * v);
+}
+
+inline rt_tuple operator/(const rt_tuple &u, const double v) {
+  return rt_tuple(u.x() / v, u.y() / v, u.z() / v, u.type_val() / v);
 }
 
 #endif // !RT_TUPLES
