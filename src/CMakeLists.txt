@@ -7,15 +7,18 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 add_subdirectory(structs)
 add_subdirectory(extra)
+add_subdirectory(render)
 
 set(ALL_SUBLIBRARIES
     lib_structs
     lib_extra
+    lib_render
 )
 set(ALL_DEPENDENCIES
 
 )
 
-target_link_libraries(lib_extra lib_structs)
+target_link_libraries(lib_extra lib_structs lib_render)
+target_link_libraries(lib_render lib_structs)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${ALL_SUBLIBRARIES} PUBLIC ${ALL_DEPENDENCIES})

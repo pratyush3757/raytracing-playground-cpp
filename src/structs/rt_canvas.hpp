@@ -18,7 +18,7 @@ public:
         << "(" << x 
         << ", " << y 
         << ") | (" << this->width 
-        << ", " <<this->height 
+        << ", " << this->height 
         << ")" << std::endl;
       return;
     }
