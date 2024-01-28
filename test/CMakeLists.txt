@@ -31,6 +31,7 @@ set(TEST_FILES
     tuple_tests.cpp
     color_tests.cpp
     canvas_tests.cpp
+    matrix_tests.cpp
 )
 # Add test cpp file
 add_executable(${TESTNAME} ${TEST_FILES})
