@@ -5,10 +5,20 @@
 // All Matrix sizes have been defined separately as classes.
 // This is to help the compiler optimize the functions for those specific dimensions.
 #include "rt_tuples.hpp"
+#include <cassert>
 #include <cstddef>
 class rt_matrix_2 {
 public:
   double mat[2][2] = {0};
+
+  rt_matrix_2() = default;
+  rt_matrix_2(double u[2][2]) {
+    for(size_t i = 0; i < 2; i++) {
+      for (size_t j = 0; j < 2; j++) {
+        mat[i][j] = u[i][j];
+      }
+    }
+  }
 
   static rt_matrix_2 id_matrix() {
     rt_matrix_2 res;
@@ -37,6 +47,15 @@ public:
 class rt_matrix_3 {
 public:
   double mat[3][3] = {0};
+
+  rt_matrix_3() = default;
+  rt_matrix_3(double u[3][3]) {
+    for(size_t i = 0; i < 3; i++) {
+      for (size_t j = 0; j < 3; j++) {
+        mat[i][j] = u[i][j];
+      }
+    }
+  }
 
   static rt_matrix_3 id_matrix() {
     rt_matrix_3 res;
@@ -100,6 +119,15 @@ class rt_matrix_4 {
 public:
   double mat[4][4] = {0};
 
+  rt_matrix_4() = default;
+  rt_matrix_4(double u[4][4]) {
+    for(size_t i = 0; i < 4; i++) {
+      for (size_t j = 0; j < 4; j++) {
+        mat[i][j] = u[i][j];
+      }
+    }
+  }
+
   static rt_matrix_4 id_matrix() {
     rt_matrix_4 res;
     for(size_t i = 0; i < 4; i++) {
@@ -153,6 +181,25 @@ public:
     double res = 0;
     for(size_t i = 0; i < 4; i++) {
       res = res + u.mat[0][i] * rt_matrix_4::cofactor(u, 0, i);
+    }
+    return res;
+  }
+
+  static bool is_invertible(const rt_matrix_4 &u) {
+    return rt_matrix_4::determinant(u) != 0;
+  }
+
+  static rt_matrix_4 inverse(const rt_matrix_4 &u) {
+    assert(rt_matrix_4::is_invertible(u));
+
+    double determinant = rt_matrix_4::determinant(u);
+    rt_matrix_4 res;
+    for (size_t i = 0; i < 4; i++) {
+      for (size_t j = 0; j < 4; j++) {
+        double c = rt_matrix_4::cofactor(u, i, j);
+        // Note the j,i not i,j as inverse is transposed
+        res.mat[j][i] = c / determinant;
+      }
     }
     return res;
   }
