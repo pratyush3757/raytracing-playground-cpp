@@ -186,7 +186,7 @@ TEST(transformationTests, chained_transformations_must_be_applied_in_reverse_ord
 
 TEST(transformationTests, chained_transformations_as_matrix_functions) {
     rt_tuple p = rt_tuple::point(1, 0, 1);
-    rt_matrix_4 T = rt_matrix_4::id_matrix().rotation_x(pi/2).scaling(5, 5, 5).translation(10, 5, 7);
+    rt_matrix_4 T = rt_matrix_4::id_matrix().rotate_x(pi/2).scale(5, 5, 5).translate(10, 5, 7);
 
     rt_tuple ref = rt_tuple::point(15, 0, 7);
     EXPECT_EQ(T * p, ref);
