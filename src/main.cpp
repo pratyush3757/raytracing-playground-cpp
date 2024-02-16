@@ -1,42 +1,33 @@
-#include "rt_cannon.hpp"
 #include "rt_canvas.hpp"
+#include "rt_matrix.hpp"
 #include "rt_tuples.hpp"
+#include "rt_transformations.hpp"
 #include "ppm.hpp"
 #include <cstddef>
 #include <iostream>
+#include <numbers>
 
-int main(int argc, char **argv) { 
-    rt_cannon::projectile proj = rt_cannon::projectile(
-        rt_tuple::point(0, 1, 0),
-        rt_tuple::normalize(rt_tuple::vector(1, 1.8, 0)) * 11.25
-    );
-    
-    rt_cannon::environment env = rt_cannon::environment(
-        rt_tuple::vector(0, -0.1, 0),
-        rt_tuple::vector(-0.01, 0, 0)
-    );
-    
+int main(int argc, char **argv) {
     size_t width, height;
-    width = 900;
-    height = 550;
+    width = 800;
+    height = 800;
     rt_canvas canvas = rt_canvas(width, height);
-    rt_color pixel = rt_color(1, 0, 0);
+    rt_color pixel = rt_color(1, 1, 1);
 
-    size_t ticks = 0;
-    while (proj.get_position().y() > 0) {
-        rt_tuple pos = proj.get_position();
-        double x, y, z;
-        x = pos.x();
-        y = pos.y();
-        z = pos.z();
-        // std::cout << "Position: (" << x << ", " << y << ", " << z << ")" << std::endl;
-        y = height - y;
-        canvas.write_pixel(x, y, pixel);
-        
-        ticks++;
-        proj = rt_cannon::tick(env, proj);
+    rt_tuple point = rt_tuple::point(0, 0, 0);
+    rt_matrix_4 translate = rt_transformations::translation(300, 0, 0);
+    point = translate * point;
+
+    rt_matrix_4 rotate_anti_clock = rt_transformations::rotation_z(std::numbers::pi/6);
+
+    double x, y;
+
+    for(size_t i = 0; i < 12; i++) {
+        point = rotate_anti_clock * point;
+        x = point.x();
+        y = point.y();
+        canvas.write_pixel(x+400, y+400, pixel);
     }
-    std::cerr << "Ticks taken: " << ticks << std::endl;
     
     ppm::render_plain(canvas);
     return 0;
