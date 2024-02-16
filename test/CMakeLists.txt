@@ -26,12 +26,14 @@ FetchContent_MakeAvailable(googletest)
 ################################
 # All libraries to test
 set(LIBS_TO_TEST
+  lib_structs
 )
 set(TEST_FILES
     tuple_tests.cpp
     color_tests.cpp
     canvas_tests.cpp
     matrix_tests.cpp
+    transformation_tests.cpp
 )
 # Add test cpp file
 add_executable(${TESTNAME} ${TEST_FILES})

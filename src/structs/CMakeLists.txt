@@ -1,5 +1,7 @@
 set(LIB_STRUCTS_SRC
-    rt_tuples.cpp)
+    rt_tuples.cpp
+    rt_matrix.cpp
+    rt_transformations.cpp)
 
 add_library(lib_structs
     ${LIB_STRUCTS_SRC}
