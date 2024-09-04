@@ -1,7 +1,5 @@
 #include "gtest/gtest.h"
 #include <cmath>
-#include <cstddef>
-#include "../src/structs/rt_tuples.hpp"
 #include "../src/structs/rt_colors.hpp"
 #include "../src/structs/rt_canvas.hpp"
 
@@ -10,7 +8,7 @@ TEST(canvasTests, creating_canvas) {
     rt_color ref = rt_color(0,0,0);
     for (auto const& row : full_canvas.canvas) {
         for (auto const& pixel : row) {
-            EXPECT_EQ(ref == pixel, true);
+            EXPECT_TRUE(ref == pixel);
         }
     }
     EXPECT_EQ(full_canvas.width, 10);

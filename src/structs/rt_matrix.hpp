@@ -5,6 +5,7 @@
 // All Matrix sizes have been defined separately as classes.
 // This is to help the compiler optimize the functions for those specific dimensions.
 #include "rt_tuples.hpp"
+#include "rt_util.hpp"
 #include <cassert>
 #include <cstddef>
 class rt_matrix_2 {
@@ -215,7 +216,7 @@ public:
 inline bool operator==(const rt_matrix_2 &u, const rt_matrix_2 &v) {
   for(size_t i = 0; i < 2; i++) {
     for(size_t j = 0; j < 2; j++) {
-      if(!rt_tuple::doubleCompare(u.mat[i][j], v.mat[i][j])) {
+      if(!equal(u.mat[i][j], v.mat[i][j])) {
         return false;
       }
     }
@@ -226,7 +227,7 @@ inline bool operator==(const rt_matrix_2 &u, const rt_matrix_2 &v) {
 inline bool operator==(const rt_matrix_3 &u, const rt_matrix_3 &v) {
   for(size_t i = 0; i < 3; i++) {
     for(size_t j = 0; j < 3; j++) {
-      if(!rt_tuple::doubleCompare(u.mat[i][j], v.mat[i][j])) {
+      if(!equal(u.mat[i][j], v.mat[i][j])) {
         return false;
       }
     }
@@ -237,7 +238,7 @@ inline bool operator==(const rt_matrix_3 &u, const rt_matrix_3 &v) {
 inline bool operator==(const rt_matrix_4 &u, const rt_matrix_4 &v) {
   for(size_t i = 0; i < 4; i++) {
     for(size_t j = 0; j < 4; j++) {
-      if(!rt_tuple::doubleCompare(u.mat[i][j], v.mat[i][j])) {
+      if(!equal(u.mat[i][j], v.mat[i][j])) {
         return false;
       }
     }

@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 #include <cmath>
-#include <cstddef>
 #include "../src/structs/rt_tuples.hpp"
 #include "../src/structs/rt_colors.hpp"
 
@@ -19,7 +18,7 @@ TEST(colorTests, adding_colors) {
 
     rt_color ref = rt_color(1.6, 0.7, 1.0);
 
-    EXPECT_EQ(ref == added, true);
+    EXPECT_TRUE(ref == added);
 }
 
 TEST(colorTests, subtracting_colors) {
@@ -30,7 +29,7 @@ TEST(colorTests, subtracting_colors) {
 
     rt_color ref = rt_color(0.2, 0.5, 0.5);
 
-    EXPECT_EQ(ref == subtracted, true);
+    EXPECT_TRUE(ref == subtracted);
 }
 
 TEST(colorTests, multiplying_color_by_scalar) {
@@ -40,7 +39,7 @@ TEST(colorTests, multiplying_color_by_scalar) {
 
     rt_color ref = rt_color(0.4, 0.6, 0.8);
 
-    EXPECT_EQ(ref == multiplied, true);
+    EXPECT_TRUE(ref == multiplied);
 }
 
 TEST(colorTests, multiplying_colors) {
@@ -51,5 +50,5 @@ TEST(colorTests, multiplying_colors) {
 
     rt_color ref = rt_color(0.9, 0.2, 0.04);
 
-    EXPECT_EQ(ref == multiplied, true);
+    EXPECT_TRUE(ref == multiplied);
 }

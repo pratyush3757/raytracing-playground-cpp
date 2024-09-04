@@ -8,23 +8,23 @@ TEST(matrixTests, constructing_4x4_matrix) {
         {9, 10, 11, 12},
         {13.5, 14.5, 15.5, 16.5}};
     rt_matrix_4 x = rt_matrix_4(ref);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[0][0], 1), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[0][3], 4), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[1][0], 5.5), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[1][2], 7.5), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[2][2], 11), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[3][0], 13.5), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[3][2], 15.5), true);
+    EXPECT_TRUE(equal(x.mat[0][0], 1));
+    EXPECT_TRUE(equal(x.mat[0][3], 4));
+    EXPECT_TRUE(equal(x.mat[1][0], 5.5));
+    EXPECT_TRUE(equal(x.mat[1][2], 7.5));
+    EXPECT_TRUE(equal(x.mat[2][2], 11));
+    EXPECT_TRUE(equal(x.mat[3][0], 13.5));
+    EXPECT_TRUE(equal(x.mat[3][2], 15.5));
 }
 
 TEST(matrixTests, constructing_2x2_matrix) {
     double ref[2][2] = {{-3, 5},
         {1, -2}};
     rt_matrix_2 x = rt_matrix_2(ref);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[0][0], -3), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[0][1], 5), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[1][0], 1), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[1][1], -2), true);
+    EXPECT_TRUE(equal(x.mat[0][0], -3));
+    EXPECT_TRUE(equal(x.mat[0][1], 5));
+    EXPECT_TRUE(equal(x.mat[1][0], 1));
+    EXPECT_TRUE(equal(x.mat[1][1], -2));
 }
 
 TEST(matrixTests, constructing_3x3_matrix) {
@@ -32,9 +32,9 @@ TEST(matrixTests, constructing_3x3_matrix) {
         {1, -2, -7},
         {0, 1, 1}};
     rt_matrix_3 x = rt_matrix_3(ref);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[0][0], -3), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[1][1], -2), true);
-    EXPECT_EQ(rt_tuple::doubleCompare(x.mat[2][2], 1), true);
+    EXPECT_TRUE(equal(x.mat[0][0], -3));
+    EXPECT_TRUE(equal(x.mat[1][1], -2));
+    EXPECT_TRUE(equal(x.mat[2][2], 1));
 }
 
 TEST(matrixTests, check_4x4_matrix_equality) {
@@ -48,7 +48,7 @@ TEST(matrixTests, check_4x4_matrix_equality) {
         {5, 4, 3, 2}};
     rt_matrix_4 a = rt_matrix_4(ref_1);
     rt_matrix_4 b = rt_matrix_4(ref_2);
-    EXPECT_EQ(a==b, true);
+    EXPECT_TRUE(a==b);
 }
 
 TEST(matrixTests, check_4x4_matrix_inequality) {
@@ -62,7 +62,7 @@ TEST(matrixTests, check_4x4_matrix_inequality) {
         {4, 3, 2, 1}};
     rt_matrix_4 a = rt_matrix_4(ref_1);
     rt_matrix_4 b = rt_matrix_4(ref_2);
-    EXPECT_EQ(a!=b, true);
+    EXPECT_TRUE(a!=b);
 }
 
 TEST(matrixTests, multiplying_4x4_matrices) {
@@ -223,7 +223,7 @@ TEST(matrixTests, check_invertibility_of_invertible_4x4_matrix) {
     rt_matrix_4 a = rt_matrix_4(in_1);
     
     EXPECT_EQ(rt_matrix_4::determinant(a), -2120);
-    EXPECT_EQ(rt_matrix_4::is_invertible(a), true);
+    EXPECT_TRUE(rt_matrix_4::is_invertible(a));
 }
 
 TEST(matrixTests, check_invertibility_of_noninvertible_4x4_matrix) {
@@ -234,7 +234,7 @@ TEST(matrixTests, check_invertibility_of_noninvertible_4x4_matrix) {
     rt_matrix_4 a = rt_matrix_4(in_1);
     
     EXPECT_EQ(rt_matrix_4::determinant(a), 0);
-    EXPECT_EQ(rt_matrix_4::is_invertible(a), false);
+    EXPECT_FALSE(rt_matrix_4::is_invertible(a));
 }
 
 TEST(matrixTests, invert_4x4_matrix_1) {
@@ -252,10 +252,10 @@ TEST(matrixTests, invert_4x4_matrix_1) {
     
     EXPECT_EQ(rt_matrix_4::determinant(a), 532);
     EXPECT_EQ(rt_matrix_4::cofactor(a, 2, 3), -160);
-    EXPECT_EQ(rt_tuple::doubleCompare(b.mat[3][2], (double)-160/532), true);
+    EXPECT_TRUE(equal(b.mat[3][2], (double)-160/532));
 
     EXPECT_EQ(rt_matrix_4::cofactor(a, 3, 2), 105);
-    EXPECT_EQ(rt_tuple::doubleCompare(b.mat[2][3], (double)105/532), true);
+    EXPECT_TRUE(equal(b.mat[2][3], (double)105/532));
     EXPECT_EQ(b, ref);
 }
 
