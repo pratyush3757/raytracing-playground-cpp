@@ -3,6 +3,7 @@ set(LIB_STRUCTS_SRC
     rt_matrix.cpp
     rt_transformations.cpp
     rt_util.cpp
+    rt_body.cpp
 )
 
 add_library(lib_structs

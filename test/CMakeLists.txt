@@ -34,6 +34,8 @@ set(TEST_FILES
     canvas_tests.cpp
     matrix_tests.cpp
     transformation_tests.cpp
+    ray_sphere_tests.cpp
+    intersections.cpp
 )
 # Add test cpp file
 add_executable(${TESTNAME} ${TEST_FILES})
